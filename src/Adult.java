@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 public class Adult extends Mosquito{
 	
-	private static final int MAX_AGE = 40;
-	private static final int MAX_LITTER_SIZE = 15;
+	private static final int MAX_AGE = 30;
+	private static final int MAX_LITTER_SIZE = 20;
 	private static final int MIN_LITTER_SIZE = 2;
 	private int female = 1;
 	private int totalBirths = 0;
@@ -27,9 +28,15 @@ public class Adult extends Mosquito{
 	        	incrementAge();
 	         		
 	        	boolean copulated = copulate();
+	        	boolean foundBlood = false;
 	        	
 	        	if(copulated) {
-	        		//LOOK FOR BLOOD
+	        		foundBlood = lookForBlood(being);
+	        		
+	        	}
+	        	
+	        	if(foundBlood) {
+	        		
 	        		reproduce(being);
 	        	}
 	        	
@@ -38,7 +45,36 @@ public class Adult extends Mosquito{
 	        }
 		
 	    }
-	 boolean copulate() {
+	public boolean lookForBlood(ArrayList<Being> Newbeing ) {
+		Enviroment enviroment = getEnviroment();	 
+	    List<Position> adjacents = enviroment.adjacentPositions(getPosition());
+	    
+	    Iterator<Position> it = adjacents.iterator();
+		   
+	     while (it.hasNext()) {
+	        	
+	            Position where = it.next();
+	            
+	            Being being = enviroment.getBeingAt(where);
+	            
+	            if(being instanceof Person) {
+	         	
+	            	being.beBitten(this, Newbeing);
+	            	return true;
+	              }
+	            
+	            if(being instanceof Infected) {
+	            	this.setInfected(true);
+	            	
+	            	return true;
+	            }
+	        }
+	     
+	    return false; 
+		
+	}
+	 
+	public boolean copulate() {
 		 
 		 Random rand = new Random();
 		 copulate = rand.nextInt(2);
@@ -68,7 +104,7 @@ public class Adult extends Mosquito{
 		}
 		else if(female == 1 && totalBirths >= MAX_LITTER_SIZE) {
 			
-			female = 2;
+			female = 0;
 			return false;
 		}
 		
@@ -77,8 +113,6 @@ public class Adult extends Mosquito{
 
 	private void reproduce(ArrayList<Being> newEggs) {
 		Enviroment enviroment = getEnviroment();
-		
-		
 		 
 	     List<Position> free = enviroment.getFreePositions(getPosition());
 	     

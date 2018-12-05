@@ -4,7 +4,8 @@ import java.util.List;
 
 public class Egg extends Mosquito{
 
-	private static final int MAX_AGE = 450;
+	private static final int MAX_AGE = 35;
+	private static final int EVOLVE_MIN_AGE = 10;
 	
 	public Egg(Enviroment enviroment, Position position) {
 
@@ -37,14 +38,25 @@ public class Egg extends Mosquito{
 	 
 	 private void evolve(ArrayList<Being> being) {
 		 
-		 Position oldPosition = getPosition();
-		 Larva larva = new Larva(getEnviroment(),oldPosition);
-		 setDead();
-		 this.getEnviroment().setBeingAt(larva, oldPosition.getRow(), oldPosition.getCol());
-		 being.add(larva);
-		 
+		if(canEvolve()) { 
+			
+			Position oldPosition = getPosition();
+			 Larva larva = new Larva(getEnviroment(),oldPosition);
+			 setDead();
+			 this.getEnviroment().setBeingAt(larva, oldPosition.getRow(), oldPosition.getCol());
+			 being.add(larva);
+		}
 		 
 	}
+	 
+	 private boolean canEvolve() {
+		 if(getAge() > EVOLVE_MIN_AGE) {
+			 
+			 return true;
+		 }
+		 
+		 return false;
+	 }
 
 	private void move() {
 		 
@@ -72,7 +84,7 @@ public class Egg extends Mosquito{
 		 
 		 Enviroment enviroment = getEnviroment();
 	     		 
-	     List<Position> adjacent = enviroment.adjacentPositions(getPosition());
+	     List<Position> adjacent = enviroment.getFreeAdjacentPositions(getPosition());
 	     Iterator<Position> it = adjacent.iterator();
 	   
 	     while (it.hasNext()) {

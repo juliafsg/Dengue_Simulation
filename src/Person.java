@@ -41,10 +41,19 @@ public class Person extends Being {
 		  
 	  }
 	  
-	  public void beInfected() {
-		  
-		  setDead();
-		  Infected infected = new Infected(getEnviroment(), getPosition());
-	  }
+
+	public void beBitten(Adult adult,ArrayList<Being> being ) {
+		
+		if(adult.isInfected()) {
+			
+			Position oldPosition = getPosition();
+			Infected infected = new Infected(getEnviroment(),oldPosition);
+			setDead();
+			getEnviroment().setBeingAt(infected, oldPosition.getRow(), oldPosition.getCol());
+			being.add(infected);
+			
+		}
+		
+	}
 }	  
 	  

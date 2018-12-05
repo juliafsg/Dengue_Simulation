@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pupa extends Mosquito{
 
-	private static final int MAX_AGE = 30;
+	private static final int MAX_AGE = 5;
+
+	private static final int EVOLVE_MIN_AGE = 3;
 	
 	public Pupa(Enviroment enviroment, Position position) {
 
@@ -10,15 +13,40 @@ public class Pupa extends Mosquito{
 
 	}
 	
-	 public void act(List<Being> being) {
+	 public void act(ArrayList<Being> being) {
 	      
 	        if (isAlive()) {
 	        	
 	        	incrementAge();
 	        	
+	        	evolve(being);
+	        	
 	        }
 		
 	    }
+	 
+	 private void evolve(ArrayList<Being> being) {
+		 
+			if(canEvolve()) { 
+				
+				Position oldPosition = getPosition();
+				 Adult adult = new Adult(getEnviroment(),oldPosition);
+				 setDead();
+				 this.getEnviroment().setBeingAt(adult, oldPosition.getRow(), oldPosition.getCol());
+				 being.add(adult);
+			}
+			 
+		}
+		 
+		 private boolean canEvolve() {
+			 if(getAge() > EVOLVE_MIN_AGE) {
+				 
+				 return true;
+			 }
+			 
+			 return false;
+		 }
+
 	
 	 public void incrementAge() {
 	       

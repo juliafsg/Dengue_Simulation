@@ -13,7 +13,7 @@ public class Being {
         this.enviroment = enviroment;
         this.position = position;
         this.setAge(0);
-        this.foodLevel = 20;
+        this.foodLevel = 5;
         this.alive = true;
         
 	}
@@ -75,6 +75,11 @@ public class Being {
 	    	
 	        return enviroment;
 	    }
+
+	public void beBitten(Adult adult, ArrayList<Being> being ) {
+	
+		
+	}
 
 
 }

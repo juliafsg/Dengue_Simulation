@@ -5,7 +5,9 @@ public class EnviromentStats {
 	// Counters for each type of entity (shark, herring, etc.) in the simulation:
     private HashMap<Class<? extends Being>, Counter> counters;
 
-    // Whether the counters are currently up to date:
+   
+
+	// Whether the counters are currently up to date:
     private boolean countsValid;
 
 
@@ -108,4 +110,11 @@ public class EnviromentStats {
 
     }
 
+    public HashMap<Class<? extends Being>, Counter> getCounters() {
+		return counters;
+	}
+
+	public void setCounters(HashMap<Class<? extends Being>, Counter> counters) {
+		this.counters = counters;
+	}
 }

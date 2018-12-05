@@ -5,15 +5,13 @@ import java.util.List;
 public class Enviroment {
 	
     private Cell[][] enviroment;
-    private double temperature;
     private int height;
     private int width;
     
-    public Enviroment(int height, int width, double temperature) {
+    public Enviroment(int height, int width) {
 
         this.height = height;
         this.width = width;
-        this.temperature = temperature;
 
         enviroment = new Cell[height][width];
 

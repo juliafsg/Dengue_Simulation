@@ -20,7 +20,16 @@ public class SimulatorView extends JFrame {
 
     private EnviromentStats stats;
 
-    public SimulatorView(int height, int width) {
+    public EnviromentStats getStats() {
+		return stats;
+	}
+
+
+	public void setStats(EnviromentStats stats) {
+		this.stats = stats;
+	}
+
+	public SimulatorView(int height, int width) {
 
         stats = new EnviromentStats();
         colors = new HashMap<Class<? extends Being>,Color>();
