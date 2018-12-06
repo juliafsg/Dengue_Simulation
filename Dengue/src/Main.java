@@ -13,8 +13,9 @@ import org.knowm.xchart.style.Styler.LegendPosition;
 
 public class Main {
 	public static void main(String[] args) {
-		Simulator simulation = new Simulator(150, 150, 50, 10, 50);
+		Simulator simulation = new Simulator(150, 150, 0, 300, 10);
 		simulation.run(100);
+		simulation.PrintHistogram();
 
 		// Create Chart
 		final XYChart chart = new XYChartBuilder().width(600).height(400)

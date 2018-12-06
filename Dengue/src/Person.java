@@ -28,7 +28,7 @@ public class Person extends Being {
 			getEnviroment().clear(oldPosition);
 		}
 	}
-
+	
 	public void beBitten(Adult adult, ArrayList<Being> being) {
 		if (adult.isInfected()) {
 			Position oldPosition = getPosition();

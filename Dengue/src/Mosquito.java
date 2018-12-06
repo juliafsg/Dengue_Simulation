@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Mosquito extends Being {
 	// Atribuições do mosquito
@@ -7,7 +8,8 @@ public class Mosquito extends Being {
 
 	public Mosquito(Enviroment enviroment, Position position) {
 		super(enviroment, position);
-		infected = false;
+		Random random = new Random();
+		infected = random.nextBoolean();
 		locomotion = 0;
 	}
 

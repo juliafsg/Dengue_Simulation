@@ -17,10 +17,6 @@ public abstract class Being {
 
 	public abstract void act(ArrayList<Being> newBeing);
 	
-	public void beBitten(Adult adult, ArrayList<Being> being) {
-		
-	}
-
 	public void incrementHunger() {
 		foodLevel--;
 		if (foodLevel <= 0) {
@@ -58,7 +54,6 @@ public abstract class Being {
 	}
 
 	public Position getPosition() {
-
 		return position;
 	}
 

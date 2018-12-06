@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Infected extends Being {
-	private static final int BETTER_MIN_AGE = 100;
+	private static final int BETTER_MIN_AGE = 7;
 
 	public Infected(Enviroment enviroment, Position position) {
 		super(enviroment, position);

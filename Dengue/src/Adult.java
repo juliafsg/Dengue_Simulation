@@ -46,11 +46,12 @@ public class Adult extends Mosquito {
 			Position where = it.next();
 			Being being = enviroment.getBeingAt(where);
 			if (being instanceof Person) {
-				being.beBitten(this, Newbeing);
+				Person person = (Person) being;
+				person.beBitten(this, Newbeing);
 				return true;
 			}
 			if (being instanceof Infected) {
-				this.setInfected(true);
+				setInfected(true);
 				return true;
 			}
 		}
@@ -79,8 +80,7 @@ public class Adult extends Mosquito {
 		boolean canBreed = false;
 		if (female == 1 && totalBirths < MAX_LITTER_SIZE) {
 			canBreed = true;
-		} 
-		else if (female == 1 && totalBirths >= MAX_LITTER_SIZE) {
+		} else if (female == 1 && totalBirths >= MAX_LITTER_SIZE) {
 			female = 0;
 		}
 		return canBreed;
@@ -119,7 +119,7 @@ public class Adult extends Mosquito {
 
 	public void incrementAge() {
 		setAge(getAge() + 1);
-		
+
 		if (getAge() > MAX_AGE) {
 			setDead();
 		}
