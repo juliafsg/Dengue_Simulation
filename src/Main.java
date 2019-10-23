@@ -1,4 +1,4 @@
-
+// Classe principal para inicio da simulação
 public class Main {
 
 	public static void main(String[] args) {
