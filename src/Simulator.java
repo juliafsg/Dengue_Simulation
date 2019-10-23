@@ -6,15 +6,16 @@ import java.util.Random;
 
 public class Simulator {
 
-	private Enviroment enviroment;
+	private Enviroment enviroment; 
     private SimulatorView simulatorView;
     private ArrayList<Being> being;
     private int [] totalOfInfected;
     private int [] totalOfMosquitoes;
     
     private int step;
-    
     private int teste = 5;
+
+	// Construtor Principal
 	public Simulator(int height, int width, int infected, int people, int mosquitos) {
 
        enviroment = new Enviroment(height, width);
@@ -80,9 +81,8 @@ public class Simulator {
 	            }
 	            
 	        }
-	        
+	     
 	        being.addAll(newBeing);
-	      
 	       
 	        simulatorView.showStatus(step, enviroment);
 	        UpdateHistograms();
@@ -136,8 +136,8 @@ public class Simulator {
 			
 	}	
 	
+	// Função que atualiza os histogramas
 	public void UpdateHistograms() {
-		
 		
 		for(Iterator<Being> it = being.iterator(); it.hasNext();) {
         	
@@ -149,14 +149,10 @@ public class Simulator {
             
             if(being instanceof Adult) {
             	totalOfMosquitoes[step-1]++;
-            }
-            
-          
-        }
-        
-		
+            }         
+        }       
 }
-	
+	// Função para imprimir resultados do histograma
 	public void PrintHistogram() {
 		
 		System.out.println(" Total of Infected: ");

@@ -7,7 +7,8 @@ public class Enviroment {
     private Cell[][] enviroment;
     private int height;
     private int width;
-    
+
+    // Construtor do ambiente
     public Enviroment(int height, int width) {
 
         this.height = height;
@@ -25,18 +26,21 @@ public class Enviroment {
         }
     }
     
+    // Retorna a altura do ambiente
     public int getHeight() {
 
         return this.height;
 
     }
     
+    // Retorna a largura do ambiente
     public int getWidth() {
 
         return this.width;
 
     }
     
+    // Override que retorna o ser em uma determinada posição
     public Being getBeingAt(int row, int col) {
 
         if ((row >= 0 && row <= this.height) && (col >= 0 && col <= this.width)) {
@@ -53,18 +57,21 @@ public class Enviroment {
 
     }
     
+    // Retorna o ser em determinada posição
     public Being getBeingAt(Position position) {
         
     	return getBeingAt(position.getRow(), position.getCol());
 
     }
     
+    // Override que retorna a quantidade de água
     public int getWaterAt(Position position) {
         
     	return getWaterAt(position.getRow(), position.getCol());
 
     }
     
+    // Função que retorna a quantidade de agua em uma região
     private int getWaterAt(int row, int col) {
     	if ((row >= 0 && row <= this.height) && (col >= 0 && col <= this.width)) {
 
@@ -79,6 +86,7 @@ public class Enviroment {
         }
 	}
 
+    // Função que  resgata uma única posição adjacente livre
 	public Position freeAdjacentPosition(Position position) {
     	 
         List<Position> free = getFreeAdjacentPositions(position);
@@ -96,6 +104,7 @@ public class Enviroment {
         }
     }
     
+    // Função para buscar as posições adjacentes livres
     public List<Position> getFreeAdjacentPositions(Position position) {
         	
             List<Position> free = new LinkedList<Position>();
@@ -115,6 +124,7 @@ public class Enviroment {
         
         } 
     
+    // Função para buscar as posições adjacentes de uma lista
     public List<Position> adjacentPositions(Position position) {
         
         assert position != null : "Null location passed to adjacentLocations";
@@ -154,6 +164,7 @@ public class Enviroment {
     
     }
 
+    // Função para adicionar um ser em uma determinada posição
     public void setBeingAt(Being being, int row, int col) {
 
         if ((row >= 0 && row <= this.height) && (col >= 0 && col <= this.width)) {
@@ -164,12 +175,14 @@ public class Enviroment {
 
     }
     
+    // Função para desocupar uma determinada posição
     public void clear(Position position) {
 		
         this.enviroment[position.getRow()][position.getCol()].clear();
 	
 	}
 
+    // Função que retorna uma lista com todas as posições disponíveis
 	public List<Position> getFreePositions(Position position) {
 		List<Position> free = new LinkedList<Position>();
         List<Position> positions = Positions();
@@ -187,6 +200,7 @@ public class Enviroment {
         return free;
 	}
 	
+    // Função que retorna uma lista com todas as posições aleatoriamente
 	public List<Position> Positions() {
 		
 		List<Position> allPositions = new LinkedList<Position>();
